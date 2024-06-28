@@ -1,13 +1,12 @@
 #!/bin/sh
 
-MINECRAFT_VER=1.12.2
-FORGE_VER=14.23.5.2860
+MINECRAFT_VER=1.19.2
+MOD_ID=114
+VERSION_ID=12147
 
-echo "Downloading Forge..."
-FORGE_URL=https://files.minecraftforge.net/maven/net/minecraftforge/forge/${MINECRAFT_VER}-${FORGE_VER}/forge-${MINECRAFT_VER}-${FORGE_VER}-installer.jar
-wget "$FORGE_URL" -O installer.jar
-
-echo "Downloading RLCraft..."
-wget https://mediafilez.forgecdn.net/files/4612/990/RLCraft+Server+Pack+1.12.2+-+Release+v2.9.3.zip -O rlcraft.zip
-unzip -q rlcraft.zip
-rm -rf rlcraft.zip
+echo "Downloading FTB AbePack installer..."
+FTB_URL=https://api.modpacks.ch/public/modpack/${MOD_ID}/${VERSION_ID}/server/arm/linux
+wget "$FTB_URL" -O serverinstall_${MOD_ID}_${VERSION_ID}
+./serverinstall_${MOD_ID}_${VERSION_ID} --auto --noscript
+mv minecraft_server.${MINECRAFT_VER}.jar server.jar
+rm serverinstall_${MOD_ID}_${VERSION_ID}

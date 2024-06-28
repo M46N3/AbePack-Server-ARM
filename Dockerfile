@@ -8,19 +8,19 @@ RUN /start.sh
 
 
 
-FROM openjdk:8-jre-slim AS server-install
-COPY --from=base /server /server/
-WORKDIR /server
-COPY server.properties /server/
-RUN java -jar installer.jar --installServer \
-    && rm -rf installer* \
-    && ln -s forge-*.jar server.jar
+# FROM openjdk:8-jre-slim AS server-install
+# COPY --from=base /server /server/
+# WORKDIR /server
+# COPY server.properties /server/
+# RUN java -jar installer.jar --installServer \
+#     && rm -rf installer* \
+#     && ln -s forge-*.jar server.jar
 
 
 
 FROM openjdk:8-jre-slim
 COPY run-server.sh /
-COPY --from=server-install /server /server/
+COPY --from=base /server /server/
 RUN adduser --system --group forge && \
     chmod +x run-server.sh && \
     mkdir -p /server/server-data && \
