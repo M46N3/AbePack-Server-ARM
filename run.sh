@@ -11,3 +11,4 @@ chmod +x serverinstall_${MOD_ID}_${VERSION_ID}
 ./serverinstall_${MOD_ID}_${VERSION_ID} --auto --noscript
 mv minecraft_server.${MINECRAFT_VER}.jar server.jar
 rm serverinstall_${MOD_ID}_${VERSION_ID}
+echo "y" | ./start.sh
